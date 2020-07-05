@@ -33,6 +33,7 @@ public class ProductController {
 
     @GetMapping(path = "{id}")
     public Product getProductById(@PathVariable("id") UUID id) {
+        System.out.println("dd");
         return productService.getProductById(id).orElse(null);
     }
 
