@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -22,7 +24,7 @@ public class ProductController {
     }
 
     @PostMapping
-    public void addProduct(@RequestBody Product product) {
+    public void addProduct(@Valid @NotNull @RequestBody Product product) {
         productService.addProduct(product);
     }
 
@@ -34,6 +36,14 @@ public class ProductController {
     @GetMapping(path = "{id}")
     public Product getProductById(@PathVariable("id") UUID id) {
         return productService.getProductById(id).orElse(null);
+    }
+    @DeleteMapping(path = "{id}")
+    public void deleteProduct(@PathVariable("id") UUID id) {
+        productService.deleteProduct(id);
+    }
+    @PutMapping(path = "{id}")
+    public void updateProduct(@PathVariable("id") UUID id, @NotNull @Valid @RequestBody Product product) {
+        productService.updatePerson(id, product);
     }
 
 

@@ -30,11 +30,22 @@ public class ProductDAOImple implements ProductDAO {
 
     @Override
     public int deleteProduct(UUID id) {
-        return 0;
+        Optional<Product> productMaybe = getProductById(id);
+        if(productMaybe.isEmpty())
+            return 0;
+        products.remove(productMaybe.get());
+        return 1;
     }
 
     @Override
-    public int updatePerson(UUID id, Product product) {
-        return 0;
+    public int updatePerson(UUID id, Product updateProduct) {
+        return getProductById(id).map(person -> {
+            int indexOfUpdateProduct = products.indexOf(person);
+            if(indexOfUpdateProduct >= 0) {
+                products.set(indexOfUpdateProduct, new Product(id, updateProduct.getName()));
+                return 1;
+            }
+            return 0;
+        }).orElse(0);
     }
 }
