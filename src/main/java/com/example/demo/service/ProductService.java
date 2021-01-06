@@ -15,7 +15,7 @@ public class ProductService {
     private final ProductDAO productDAO;
 
     @Autowired
-    public ProductService(@Qualifier("dao_impl") ProductDAO productDAO) {
+    public ProductService(@Qualifier("first") ProductDAO productDAO) {
         this.productDAO = productDAO;
     }
 

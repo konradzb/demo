@@ -8,9 +8,13 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-@Repository("dao_impl")
+@Repository("first")
 public class ProductDAOImple implements ProductDAO {
-    private List<Product> products = new ArrayList<>();
+    private List<Product> products = List.of(new Product(UUID.randomUUID(), "Test1"),
+            new Product(UUID.randomUUID(), "Test2"),
+            new Product(UUID.randomUUID(), "Test3"),
+            new Product(UUID.randomUUID(), "Test4"),
+            new Product(UUID.randomUUID(), "Test5"));
 
     @Override
     public int insertProduct(UUID id, Product product) {
