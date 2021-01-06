@@ -1,6 +1,7 @@
 package com.example.demo.dao;
 
 import com.example.demo.model.Product;
+import com.google.common.collect.Lists;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ import java.util.UUID;
 
 @Repository("first")
 public class ProductDAOImple implements ProductDAO {
-    private List<Product> products = List.of(new Product(UUID.randomUUID(), "Test1"),
+    private List<Product> products = Lists.newArrayList(new Product(UUID.randomUUID(), "Test1"),
             new Product(UUID.randomUUID(), "Test2"),
             new Product(UUID.randomUUID(), "Test3"),
             new Product(UUID.randomUUID(), "Test4"),
@@ -18,7 +19,7 @@ public class ProductDAOImple implements ProductDAO {
 
     @Override
     public int insertProduct(UUID id, Product product) {
-        products.add(new Product(id, product.getName()));
+        products.add(new Product(UUID.randomUUID(), product.getName()));
         return 1;
     }
 
